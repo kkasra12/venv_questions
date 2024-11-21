@@ -1,0 +1,39 @@
+name: Assign Random Code
+on:
+  create:
+    branches:
+      - main
+
+jobs:
+  randomize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Randomly select a starter file
+        id: select_file
+        run: |
+          QUESTION_FOLDER="Questions"
+          echo "QUESTION_FOLDER=$QUESTION_FOLDER" >> $GITHUB_ENV
+          
+          FILES=($QUESTION_FOLDER/*)
+          RANDOM_FILE=${FILES[$RANDOM % ${#FILES[@]}]}
+          
+          echo "Selected file: $RANDOM_FILE"
+          echo "SELECTED_FILE=$RANDOM_FILE" >> $GITHUB_ENV
+      
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+      
+      - name: Copy the selected file
+        run: |
+          cp $SELECTED_FILE .
+          rm -rf $QUESTION_FOLDER
+          git add .
+          git commit -m "Added randomly selected starter file"
+          git push origin main
