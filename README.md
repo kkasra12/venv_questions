@@ -3,6 +3,7 @@
 ### Overview  
 In this practical assignment, you've been assigned a random code file (e.g., `Q<number>.py`). Your task is to set it up, share it with your teammate, and ensure everything works smoothly. Follow these steps carefully to complete the assignment.
 
+> Note: If you see the `Questions` folder and don't find your assigned question there, don't panic! Wait for a moment for the fortune wheel to turn, then reload the page. Your question will appear soon.
 ---
 
 ### Step 1: Set It Up  
