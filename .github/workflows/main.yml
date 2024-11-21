@@ -1,11 +1,12 @@
 name: Assign Random Code
 on:
-  create:
+  push:
     branches:
       - main
 
 jobs:
   randomize:
+    if: github.event.head_commit.message == 'add deadline'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
